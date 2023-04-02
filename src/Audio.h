@@ -169,7 +169,7 @@ public:
     bool connecttohost(const char* host, const char* user = "", const char* pwd = "");
     bool connecttospeech(const char* speech, const char* lang);
     bool connecttomarytts(const char* speech, const char* lang, const char* voice);
-    bool connecttoFS(fs::FS &fs, const char* path, uint32_t resumeFilePos = 0);
+    bool connecttoFS(fs::FS &fs, const char* path, uint32_t resumeFilePos = 0, uint8_t fallbackcodec = CODEC_NONE);
     bool connecttoSD(const char* path, uint32_t resumeFilePos = 0);
     bool setFileLoop(bool input);//TEST loop
     void setConnectionTimeout(uint16_t timeout_ms, uint16_t timeout_ms_ssl);

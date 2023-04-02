@@ -696,7 +696,7 @@ bool Audio::connecttoSD(const char* path, uint32_t resumeFilePos) {
     return connecttoFS(SD, path, resumeFilePos);
 }
 //---------------------------------------------------------------------------------------------------------------------
-bool Audio::connecttoFS(fs::FS &fs, const char* path, uint32_t resumeFilePos) {
+bool Audio::connecttoFS(fs::FS &fs, const char* path, uint32_t resumeFilePos, uint8_t fallbackCodec) {
 
     xSemaphoreTakeRecursive(mutex_audio, portMAX_DELAY); // #3
 
@@ -751,6 +751,7 @@ bool Audio::connecttoFS(fs::FS &fs, const char* path, uint32_t resumeFilePos) {
         afn[i] = toLowerCase(afn[i]);
     }
 
+    m_codec = fallbackCodec;
     if(endsWith(afn, ".mp3"))  m_codec = CODEC_MP3; // m_codec is by default CODEC_NONE
     if(endsWith(afn, ".m4a"))  m_codec = CODEC_M4A;
     if(endsWith(afn, ".aac"))  m_codec = CODEC_AAC;
